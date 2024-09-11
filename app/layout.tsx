@@ -13,8 +13,8 @@ const poppins = Poppins({
 
 
 export const metadata: Metadata = {
-  title: "WolfOrganize",
-  description: "WolfOrganize is a even organizer",
+  title: "Wolf Organize",
+  description: "Wolf Organize is a even organizer",
   icons: {
     icon : '/assets/images/logo.svg',
   }
