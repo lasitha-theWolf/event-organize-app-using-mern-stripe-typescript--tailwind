@@ -24,7 +24,7 @@ const MobileNav = () => {
                 <SheetContent className="flex flex-col gap-6 bg-white md:hidden">
                     <Image
                         src='/assets/images/logo.svg'
-                        alt="WolfOrganize Logo"
+                        alt="logo"
                         width={128}
                         height={38}
                     />
