@@ -65,7 +65,6 @@ const EventForm = ({ userId, type }: EventFormProps) => {
         }
 
         if (type = 'Create') {
-            console.log(userId,'userId')
             try {
                 const newEvent = await createEvent({
                     event: {
