@@ -5,6 +5,9 @@
     "react/no-unescaped-entities": "off",  // Disables the rule for unescaped entities in JSX
     "react/react-in-jsx-scope": "off",  // Disable this rule if using React 17+
     "no-constant-condition": "off",  // Disables warnings about conditions that are always true/false
-    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]  // Warns but ignores vars starting with '_'
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],  // Warns but ignores vars starting with '_'
+    "@typescript-eslint/no-explicit-any": "off",  // Disables the rule for using 'any'
+    "@typescript-eslint/explicit-module-boundary-types": "off"  // Disables the need for explicit return types on functions
   }
 }
+
