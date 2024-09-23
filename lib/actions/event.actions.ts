@@ -7,19 +7,21 @@ import { handleError } from "../utils"
 import Event from "../database/models/event.model"
 import { model } from "mongoose"
 import Category from "../database/models/category.model"
+import { Query } from 'mongoose';
 
-//populate the event model
-const populateEvent = async (query: any) => {
-    return query.populate({
-        path: 'organizer',
-        model: User,
-        select: '_id firstName lastName'
-    }).populate({
-        path: 'category',
-        model: Category,
-        select: '_id name'
-    })
-}
+const populateEvent = async (query: Query<Event | Event[], any>) => {
+    return query
+        .populate({
+            path: 'organizer',
+            model: User,
+            select: '_id firstName lastName',
+        })
+        .populate({
+            path: 'category',
+            model: Category,
+            select: '_id name',
+        });
+};
 
 export const createEvent = async ({ event, userId, path}: CreateEventParams) => {
 
@@ -64,17 +66,25 @@ export const getEventById = async (eventId: string) => {
     }
 }
 
-export const getAllEvents = async ({query, limit = 6, page, category}: GetAllEventsParams) => {
+export const getAllEvents = async ({ query, limit = 6, page = 1, category }: GetAllEventsParams) => {
+    try {
+        await connectToDatabase();
 
-    try{
-        await connectToDatabase()
+        // Build the condition based on query parameters
+        const condition: { [key: string]: any } = {};
 
-        const condition = {};
+        // Add category filter if provided
+        if (category) {
+            condition.category = category; // Assuming category is stored in the 'category' field
+        }
+
+        // Calculate the number of documents to skip based on the page
+        const skip = (page - 1) * limit;
 
         const eventsQuery = Event.find(condition)
-        .sort({createdAt: 'desc'})
-        .skip(0)
-        .limit(limit);
+            .sort({ createdAt: 'desc' })
+            .skip(skip)
+            .limit(limit);
 
         const events = await populateEvent(eventsQuery);
 
@@ -83,11 +93,11 @@ export const getAllEvents = async ({query, limit = 6, page, category}: GetAllEve
         return {
             data: JSON.parse(JSON.stringify(events)),
             totalPages: Math.ceil(eventsCount / limit),
-        }
-
-    }catch(e) {
-        handleError(e)
+            currentPage: page,
+        };
+    } catch (e) {
+        handleError(e);
     }
-}
+};
 
 
