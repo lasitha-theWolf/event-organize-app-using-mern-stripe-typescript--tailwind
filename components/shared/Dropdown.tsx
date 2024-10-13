@@ -19,7 +19,7 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Input } from "../ui/input";
-import { createCategory, getAllCategory } from "@/lib/actions/category.actions";
+import { createCategory, getAllCategories } from "@/lib/actions/category.actions";
 
 type DropdownProps = {
     value: string;
@@ -46,7 +46,7 @@ const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
 
         const getCategory = async () => {
 
-            const categoryList = await getAllCategory();
+            const categoryList = await getAllCategories();
             categoryList && setCategories(categoryList as ICategory[])
 
         }
