@@ -43,7 +43,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
           limit={3}
           page={ordersPage}
           urlParamName="ordersPage"
-          totalPage={orders?.totalPages}
+          totalPages={orders?.totalPages}
         />
       </section>
 
