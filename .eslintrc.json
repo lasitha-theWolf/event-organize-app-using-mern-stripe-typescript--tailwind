@@ -7,7 +7,9 @@
     "no-constant-condition": "off",  // Disables warnings about conditions that are always true/false
     "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],  // Warns but ignores vars starting with '_'
     "@typescript-eslint/no-explicit-any": "off",  // Disables the rule for using 'any'
-    "@typescript-eslint/explicit-module-boundary-types": "off"  // Disables the need for explicit return types on functions
+    "@typescript-eslint/explicit-module-boundary-types": "off",  // Disables the need for explicit return types on functions
+    "prefer-const": "off"  // Disables the 'prefer-const' rule
   }
 }
+
 
